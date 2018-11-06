@@ -3,6 +3,7 @@
 
 update_version		export-ignore
 
+*.c text
 *.sln text eol=crlf
 *.props text eol=crlf
 *.vcxproj text eol=crlf

@@ -149,6 +149,8 @@ static int op_get_data(OggOpusFile *_of,int _nbytes){
   OP_ASSERT(_nbytes>0);
   buffer=(unsigned char *)ogg_sync_buffer(&_of->oy,_nbytes);
   nbytes=(int)(*_of->callbacks.read)(_of->stream,buffer,_nbytes);
+  if (nbytes == -128)
+	  return nbytes;
   OP_ASSERT(nbytes<=_nbytes);
   if(OP_LIKELY(nbytes>0))ogg_sync_wrote(&_of->oy,nbytes);
   return nbytes;
@@ -205,7 +207,8 @@ static opus_int64 op_get_next_page(OggOpusFile *_of,ogg_page *_og,
         read_nbytes=(int)OP_MIN(_boundary-position,OP_READ_SIZE);
       }
       ret=op_get_data(_of,read_nbytes);
-      if(OP_UNLIKELY(ret<0))return OP_EREAD;
+      if(OP_UNLIKELY(ret<0))
+		  return OP_EREAD;
       if(OP_UNLIKELY(ret==0)){
         /*Only fail cleanly on EOF if we didn't have a known boundary.
           Otherwise, we should have been able to reach that boundary, and this
@@ -1397,7 +1400,8 @@ static int op_open_seekable2_impl(OggOpusFile *_of){
   /*We can seek, so set out learning all about this file.*/
   (*_of->callbacks.seek)(_of->stream,0,SEEK_END);
   _of->offset=_of->end=(*_of->callbacks.tell)(_of->stream);
-  if(OP_UNLIKELY(_of->end<0))return OP_EREAD;
+  if(OP_UNLIKELY(_of->end<0))
+	  return OP_EREAD;
   data_offset=_of->links[0].data_offset;
   if(OP_UNLIKELY(_of->end<data_offset))return OP_EBADLINK;
   /*Get the offset of the last page of the physical bitstream, or, if we're
@@ -1422,6 +1426,7 @@ static int op_open_seekable2(OggOpusFile *_of){
   opus_int64        start_offset;
   int               start_op_count;
   int               ret;
+  int return_value;
   /*We're partially open and have a first link header state in storage in _of.
     Save off that stream state so we can come back to it.
     It would be simpler to just dump all this state and seek back to
@@ -1460,7 +1465,10 @@ static int op_open_seekable2(OggOpusFile *_of){
   if(OP_UNLIKELY(ret<0))return ret;
   /*And restore the position indicator.*/
   ret=(*_of->callbacks.seek)(_of->stream,op_position(_of),SEEK_SET);
-  return OP_UNLIKELY(ret<0)?OP_EREAD:0;
+  return_value =OP_UNLIKELY(ret<0) ? OP_EREAD:0;
+  if (return_value == OP_EREAD)
+	  return OP_EREAD;
+  return return_value;
 }
 
 /*Clear out the current logical bitstream decoder.*/
@@ -1514,7 +1522,8 @@ static int op_open1(OggOpusFile *_of,
   _of->stream=_stream;
   *&_of->callbacks=*_cb;
   /*At a minimum, we need to be able to read data.*/
-  if(OP_UNLIKELY(_of->callbacks.read==NULL))return OP_EREAD;
+  if(OP_UNLIKELY(_of->callbacks.read==NULL))
+	  return OP_EREAD;
   /*Initialize the framing state.*/
   ogg_sync_init(&_of->oy);
   /*Perhaps some data was previously read into a buffer for testing against
@@ -2158,7 +2167,8 @@ int op_raw_seek(OggOpusFile *_of,opus_int64 _pos){
   _of->bytes_tracked=0;
   _of->samples_tracked=0;
   ret=op_seek_helper(_of,_pos);
-  if(OP_UNLIKELY(ret<0))return OP_EREAD;
+  if(OP_UNLIKELY(ret<0))
+	  return OP_EREAD;
   ret=op_fetch_and_process_page(_of,NULL,-1,1,1);
   /*If we hit EOF, op_fetch_and_process_page() leaves us uninitialized.
     Instead, jump to the end.*/

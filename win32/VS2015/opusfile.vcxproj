@@ -27,6 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\opusfile.h" />
     <ClInclude Include="..\..\src\internal.h" />
     <ClInclude Include="..\..\src\winerrno.h" />
   </ItemGroup>
