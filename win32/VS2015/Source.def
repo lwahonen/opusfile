@@ -1,0 +1,6 @@
+LIBRARY OPUSFILE
+EXPORTS  
+   op_open_callbacks   @1  
+   op_pcm_tell   @2  
+   op_read_stereo   @3  
+   op_free   @4 
