@@ -152,11 +152,11 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(ProjectDir)..\..\..\ogg\win32\VS2015\Win32\Debug\libogg_static.lib;$(ProjectDir)..\..\..\opus\win32\VS2015\Win32\Debug\opus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>c:\libraries\ogg\win32\VS2015\Win32\Debug\libogg.lib;c:\libraries\opus\win32\VS2015\Win32\Debug\opus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y  "Z:\diktamen\opusfile\win32\VS2015\win32\Release\opusfile.dll" "Z:\diktamen\java\DiktaNet\natives\win32-x86\opusfile.dll*"</Command>
+      <Command>xcopy /Y "C:\libraries\opusfile\win32\VS2015\Win32\Debug\opusfile.dll" "c:\asemat\java\DiktaNet\natives\win32-x86\opusfile_debug.dll*"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -171,11 +171,11 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(ProjectDir)..\..\..\ogg\win32\VS2015\x64\Debug\libogg_static.lib;$(ProjectDir)..\..\..\opus\win32\VS2015\x64\Debug\opus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>c:\libraries\ogg\win32\VS2015\x64\Debug\libogg.lib;c:\libraries\opus\win32\VS2015\x64\Debug\opus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y  "Z:\diktamen\opusfile\win32\VS2015\x64\Debug\opusfile.dll" "Z:\diktamen\java\DiktaNet\natives\win32-x86-64\opusfile.dll*"</Command>
+      <Command>xcopy /Y "c:\libraries\opusfile\win32\VS2015\x64\Debug\opusfile.dll" "c:\asemat\java\DiktaNet\natives\win32-x86-64\opusfile_debug.dll*"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -199,11 +199,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>$(ProjectDir)..\..\..\ogg\win32\VS2015\Win32\Release\libogg_static.lib;$(ProjectDir)..\..\..\opus\win32\VS2015\Win32\Release\opus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>c:\libraries\ogg\win32\VS2015\Win32\Release\libogg.lib;c:\libraries\opus\win32\VS2015\Win32\Release\opus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y  "Z:\diktamen\opusfile\win32\VS2015\win32\Release\opusfile.dll" "Z:\diktamen\java\DiktaNet\natives\win32-x86\opusfile.dll*"</Command>
+      <Command> xcopy /Y "c:\libraries\opusfile\win32\VS2015\Win32\Release\opusfile.dll"  "c:\asemat\java\DiktaNet\natives\win32-x86\opusfile.dll*"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-NoHTTP|Win32'">
@@ -250,11 +250,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>$(ProjectDir)..\..\..\ogg\win32\VS2015\x64\Release\libogg_static.lib;$(ProjectDir)..\..\..\opus\win32\VS2015\x64\Release\opus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>c:\libraries\ogg\win32\VS2015\x64\Release\libogg.lib;c:\libraries\opus\win32\VS2015\x64\Release\opus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y  "Z:\diktamen\opusfile\win32\VS2015\x64\Release\opusfile.dll" "Z:\diktamen\java\DiktaNet\natives\win32-x86-64\opusfile.dll*"</Command>
+      <Command>xcopy /Y "c:\libraries\opusfile\win32\VS2015\x64\Release\opusfile.dll" "c:\asemat\java\DiktaNet\natives\win32-x86-64\opusfile.dll*"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-NoHTTP|x64'">

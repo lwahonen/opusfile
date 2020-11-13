@@ -28,6 +28,7 @@
 
 #include "opusfile.h"
 
+
 /*This implementation is largely based off of libvorbisfile.
   All of the Ogg bits work roughly the same, though I have made some
    "improvements" that have not been folded back there, yet.*/
@@ -129,6 +130,9 @@ int op_test(OpusHead *_head,
   return err;
 }
 
+
+#include <Windows.h>
+
 /*Many, many internal helpers.
   The intention is not to be confusing.
   Rampant duplication and monolithic function implementation (though we do have
@@ -150,7 +154,12 @@ static int op_get_data(OggOpusFile *_of,int _nbytes){
   buffer=(unsigned char *)ogg_sync_buffer(&_of->oy,_nbytes);
   nbytes=(int)(*_of->callbacks.read)(_of->stream,buffer,_nbytes);
   if (nbytes == -128)
+  {
+	  int error = GetLastError();
+	  if (error == ERROR_BROKEN_PIPE)
+		  return 0;
 	  return nbytes;
+  }
   OP_ASSERT(nbytes<=_nbytes);
   if(OP_LIKELY(nbytes>0))ogg_sync_wrote(&_of->oy,nbytes);
   return nbytes;

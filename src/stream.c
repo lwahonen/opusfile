@@ -26,6 +26,7 @@
 #include <string.h>
 #if defined(_WIN32)
 # include <io.h>
+#include <Windows.h>
 #endif
 
 typedef struct OpusMemStream OpusMemStream;
@@ -49,14 +50,11 @@ struct OpusMemStream{
   ptrdiff_t            pos;
 };
 
-int __stdcall GetLastError(void);
-
 static int op_fread(void *_stream,unsigned char *_ptr,int _buf_size){
   FILE   *stream;
   size_t  ret;
   int value;
   int error;
-  int ERROR_BROKEN_PIPE = 109;
 
   /*Check for empty read.*/
   if(_buf_size<=0)return 0;
