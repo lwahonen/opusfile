@@ -2,5 +2,6 @@ LIBRARY OPUSFILE
 EXPORTS  
    op_open_callbacks   @1  
    op_pcm_tell   @2  
-   op_read_stereo   @3  
-   op_free   @4 
+   op_pcm_total   @3  
+   op_read_stereo   @4  
+   op_free   @5 
