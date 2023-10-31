@@ -157,9 +157,6 @@
       <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
       <ProgramDatabaseFile>C:\libraries\opusfile\win32\VS2015\Win32\Debug\opusfile.pdb</ProgramDatabaseFile>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /Y "C:\libraries\opusfile\win32\VS2015\Win32\Debug\opusfile.dll" "c:\asemat\java\DiktaNet\natives\win32-x86\opusfile_debug.dll*"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -178,9 +175,6 @@
       <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
       <ProgramDatabaseFile>C:\libraries\opusfile\win32\VS2015\x64\Debug\opusfile.pdb</ProgramDatabaseFile>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /Y "c:\libraries\opusfile\win32\VS2015\x64\Debug\opusfile.dll" "c:\asemat\java\DiktaNet\natives\win32-x86-64\opusfile_debug.dll*"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -206,9 +200,6 @@
       <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
       <ProgramDatabaseFile>C:\libraries\opusfile\win32\VS2015\Win32\Release\opusfile.pdb</ProgramDatabaseFile>
     </Link>
-    <PostBuildEvent>
-      <Command> xcopy /Y "c:\libraries\opusfile\win32\VS2015\Win32\Release\opusfile.dll"  "c:\asemat\java\DiktaNet\natives\win32-x86\opusfile.dll*"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-NoHTTP|Win32'">
     <ClCompile>
@@ -257,9 +248,6 @@
       <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
       <ProgramDatabaseFile>C:\libraries\opusfile\win32\VS2015\x64\Release\opusfile.pdb</ProgramDatabaseFile>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /Y "c:\libraries\opusfile\win32\VS2015\x64\Release\opusfile.dll" "c:\asemat\java\DiktaNet\natives\win32-x86-64\opusfile.dll*"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-NoHTTP|x64'">
     <ClCompile>
