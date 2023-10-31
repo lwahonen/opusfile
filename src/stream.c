@@ -26,7 +26,6 @@
 #include <string.h>
 #if defined(_WIN32)
 # include <io.h>
-#include <Windows.h>
 #endif
 
 typedef struct OpusMemStream OpusMemStream;
@@ -53,25 +52,14 @@ struct OpusMemStream{
 static int op_fread(void *_stream,unsigned char *_ptr,int _buf_size){
   FILE   *stream;
   size_t  ret;
-  int value;
-  int error;
 
   /*Check for empty read.*/
   if(_buf_size<=0)return 0;
   stream=(FILE *)_stream;
   ret=fread(_ptr,1,_buf_size,stream);
   OP_ASSERT(ret<=(size_t)_buf_size);
-  if (ret < 0)
-  {
-	  error = GetLastError();
-	  if (error == ERROR_BROKEN_PIPE)
-		  return 0;
-  }
   /*If ret==0 and !feof(stream), there was a read error.*/
-  value= ret>0||feof(stream)?(int)ret:OP_EREAD;
-  if (value == OP_EREAD)
-	  return OP_EREAD;
-  return value;
+  return ret>0||feof(stream)?(int)ret:OP_EREAD;
 }
 
 static int op_fseek(void *_stream,opus_int64 _offset,int _whence){
